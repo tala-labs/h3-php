@@ -1,7 +1,5 @@
 <?php
 
-/** @generate-class-entries */
-
 namespace H3;
 
 function degs_to_rads(float $degrees): float {}
@@ -80,9 +78,11 @@ final class H3Exception extends \RuntimeException {}
 
 final class H3Index {
 
-    private int $index;
+    private $index;
 
-    public function __construct(int $index) {}
+    public function __construct(int $index) {
+        $this->index = $index;
+    }
 
     public static function fromLong(int $index): H3Index {}
 
@@ -183,9 +183,11 @@ final class H3Index {
 
 final class H3UniEdge {
 
-    private int $index;
+    private $index;
 
-    public function __construct(int $index) {}
+    public function __construct(int $index) {
+        $this->index = $index;
+    }
 
     public static function fromLong(int $index): H3UniEdge {}
 
@@ -215,11 +217,14 @@ final class H3UniEdge {
 
 final class GeoCoord {
 
-    private float $lat;
+    private $lat;
 
-    private float $lon;
+    private $lon;
 
-    public function __construct(float $lat, float $lon) {}
+    public function __construct(float $lat, float $lon) {
+        $this->lat = $lat;
+        $this->lon = $lon;
+    }
 
     public function getLat(): float {}
 
@@ -231,12 +236,14 @@ final class GeoBoundary {
     /**
      * @var GeoCoord[]
      */
-    private array $vertices;
+    private $vertices;
 
     /**
      * @param GeoCoord[] $vertices
      */
-    public function __construct(array $vertices) {}
+    public function __construct(array $vertices) {
+        $this->vertices = $vertices;
+    }
 
     /**
      * @return GeoCoord[]
@@ -246,17 +253,20 @@ final class GeoBoundary {
 
 final class GeoPolygon {
 
-    private GeoBoundary $geofence;
+    private $geofence;
 
     /**
      * @var GeoBoundary[]
      */
-    private array $holes;
+    private $holes;
 
     /**
      * @param GeoBoundary[] $holes
      */
-    public function __construct(GeoBoundary $geofence, array $holes = []) {}
+    public function __construct(GeoBoundary $geofence, array $holes = []) {
+        $this->geofence = $geofence;
+        $this->holes = $holes;
+    }
 
     public function getGeofence(): GeoBoundary {}
 
@@ -271,12 +281,14 @@ final class GeoMultiPolygon {
     /**
      * @var GeoPolygon[]
      */
-    private array $polygons;
+    private $polygons;
 
     /**
      * @param GeoPolygon[] $polygons
      */
-    public function __construct(array $polygons) {}
+    public function __construct(array $polygons) {
+        $this->polygons = $polygons;
+    }
 
     /**
      * @return GeoPolygon[]
@@ -292,11 +304,14 @@ final class GeoMultiPolygon {
 
 final class CoordIJ {
 
-    private int $i;
+    private $i;
 
-    private int $j;
+    private $j;
 
-    public function __construct(int $i, int $j) {}
+    public function __construct(int $i, int $j) {
+        $this->i = $i;
+        $this->j = $j;
+    }
 
     public function getI(): int {}
 
