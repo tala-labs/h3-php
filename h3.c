@@ -607,7 +607,7 @@ PHP_FUNCTION(compact)
     H3Index *compactedSet = ecalloc(count, sizeof(H3Index));
 
     if (zend_array_to_h3_array(arr, set) != 0) {
-        zend_argument_error(H3_H3Exception_ce, 1, "must be an array of H3Index objects");
+        zend_throw_exception(H3_H3Exception_ce, 1, "must be an array of H3Index objects");
         efree(set);
         efree(compactedSet);
         RETURN_THROWS();
@@ -646,7 +646,7 @@ PHP_FUNCTION(uncompact)
     H3Index *compactedSet = ecalloc(count, sizeof(H3Index));
 
     if (zend_array_to_h3_array(arr, compactedSet) != 0) {
-        zend_argument_error(H3_H3Exception_ce, 1, "must be an array of H3Index objects");
+        zend_throw_exception(H3_H3Exception_ce, 1, "must be an array of H3Index objects");
         efree(compactedSet);
         RETURN_THROWS();
     }
@@ -755,7 +755,7 @@ PHP_FUNCTION(polyfill)
     GeoCoord *geofence_verts = ecalloc(geofence_num_verts, sizeof(GeoCoord));
 
     if (zend_array_to_geocoord_array(geofence_verts_arr, geofence_verts) != 0) {
-        zend_argument_error(H3_H3Exception_ce, 1, "must be valid GeoPolygon object");
+        zend_throw_exception(H3_H3Exception_ce, 1, "must be valid GeoPolygon object");
         efree(geofence_verts);
         RETURN_THROWS();
     }
@@ -767,7 +767,7 @@ PHP_FUNCTION(polyfill)
     Geofence *holes = ecalloc(num_holes, sizeof(Geofence));
 
     if (zend_array_to_geofence_array(holes_arr, holes) != 0) {
-        zend_argument_error(H3_H3Exception_ce, 1, "must be valid GeoPolygon object");
+        zend_throw_exception(H3_H3Exception_ce, 1, "must be valid GeoPolygon object");
         efree(geofence_verts);
         efree(holes);
         RETURN_THROWS();
@@ -809,7 +809,7 @@ PHP_FUNCTION(h3_set_to_multi_polygon)
     H3Index *set = ecalloc(num_indexes, sizeof(H3Index));
 
     if (zend_array_to_h3_array(indexes_arr, set) != 0) {
-        zend_argument_error(H3_H3Exception_ce, 1, "must be an array of H3Index objects");
+        zend_throw_exception(H3_H3Exception_ce, 1, "must be an array of H3Index objects");
         efree(set);
         RETURN_THROWS();
     }
